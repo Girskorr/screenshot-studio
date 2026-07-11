@@ -1,0 +1,31 @@
+{
+  "name": "screenshot-studio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Browser-based studio for composing App Store / Google Play screenshots: phone mockups (2D/3D), gradient backgrounds, rich-text captions, full-resolution PNG export.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "three": "^0.185.1",
+    "zustand": "^5.0.14"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@types/three": "^0.185.0",
+    "@vitejs/plugin-react": "^6.0.3",
+    "oxlint": "^1.71.0",
+    "playwright-core": "^1.61.1",
+    "typescript": "~6.0.2",
+    "vite": "^8.1.1"
+  }
+}
