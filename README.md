@@ -2,6 +2,8 @@
 
 A free, open-source **App Store screenshot generator** that runs entirely in your browser. Frame your app screenshots in a phone mockup (flat 2D or interactive 3D device frame), place them on a gradient background, add rich-text captions, and export pixel-perfect PNGs in the official App Store and Google Play resolutions — ready to upload to App Store Connect or the Play Console.
 
+![Screenshot Studio — App Store screenshot generator with 2D phone mockup, gradient background and caption editor](docs/screenshot-2d.png)
+
 Built with Vite, React, TypeScript, Zustand, and three.js. Everything runs locally in your browser — your screenshots never leave your machine.
 
 ## Why this exists
@@ -11,6 +13,8 @@ When I released my own app, I needed a quick way to turn plain screenshots into 
 ## Features
 
 - **2D and 3D phone mockups** — a clean flat frame, or a procedurally generated 3D phone (three.js) you can orbit with the mouse, with adjustable rotation, perspective (FOV), and lighting
+
+  ![3D device mockup mode — orbit the phone directly on the preview](docs/screenshot-3d.png)
 - **Gradient backgrounds** — preset palettes plus fully custom colors and angle
 - **Rich-text captions** — headline and subline with per-selection bold/italic/color/size, draggable directly on the canvas
 - **Multi-slide projects** — manage a whole screenshot set with live thumbnails
