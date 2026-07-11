@@ -1,12 +1,12 @@
 # Store-Screenshot Studio
 
-A browser-based studio for composing App Store and Google Play screenshots: frame your app screenshots in a phone mockup (flat 2D or interactive 3D), place them on a gradient background, add rich-text captions, and export pixel-perfect PNGs in the official store resolutions.
+A free, open-source **App Store screenshot generator** that runs entirely in your browser. Frame your app screenshots in a phone mockup (flat 2D or interactive 3D device frame), place them on a gradient background, add rich-text captions, and export pixel-perfect PNGs in the official App Store and Google Play resolutions — ready to upload to App Store Connect or the Play Console.
 
 Built with Vite, React, TypeScript, Zustand, and three.js. Everything runs locally in your browser — your screenshots never leave your machine.
 
 ## Why this exists
 
-When I released my own app, I needed a quick way to turn plain screenshots into good-looking store listings. Every web tool I found was far too expensive for what it does — so I built my own. Screenshot Studio doesn't match the commercial services feature for feature, but it covers everything you need for a solid first screenshot set: free, open source, and with no upload of your screenshots to anyone's server.
+When I released my own app, I needed a quick way to turn plain screenshots into good-looking store listings. Every screenshot builder I found on the web was far too expensive for what it does — so I built my own. Think of it as a free alternative to paid tools like AppMockUp Studio, Previewed, or AppLaunchpad: it doesn't match them feature for feature, but it covers everything you need for a solid first screenshot set and your App Store optimization (ASO) — free, open source, and with no upload of your screenshots to anyone's server.
 
 ## Features
 
