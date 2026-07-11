@@ -8,7 +8,7 @@ Built with Vite, React, TypeScript, Zustand, and three.js. Everything runs local
 
 ## Why this exists
 
-When I released my own app, I needed a quick way to turn plain screenshots into good-looking store listings. Every screenshot builder I found on the web was far too expensive for what it does — so I built my own. Think of it as a free alternative to paid tools like AppMockUp Studio, Previewed, or AppLaunchpad: it doesn't match them feature for feature, but it covers everything you need for a solid first screenshot set and your App Store optimization (ASO) — free, open source, and with no upload of your screenshots to anyone's server.
+When I released my own app, [Kairos](https://play.google.com/store/apps/details?id=com.girskorr.kairos), I needed a quick way to turn plain screenshots into good-looking store listings. Every screenshot builder I found on the web was far too expensive for what it does — so I built my own. Think of it as a free alternative to paid tools like AppMockUp Studio, Previewed, or AppLaunchpad: it doesn't match them feature for feature, but it covers everything you need for a solid first screenshot set and your App Store optimization (ASO) — free, open source, and with no upload of your screenshots to anyone's server.
 
 ## Features
 
