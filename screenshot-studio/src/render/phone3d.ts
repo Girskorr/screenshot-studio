@@ -8,16 +8,10 @@
 
 import * as THREE from "three";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { chassisSpec, defaultAspect } from "./chassis";
+import type { DeviceKind } from "./constants";
 import { FONTS } from "./constants";
 import type { FrameStyle, RenderSettings } from "./types";
-
-// Bezel/Radius als Anteil der Handy-Breite — identisch zu den px-Formeln in
-// phone.ts ("none" bekommt in 3D einen hauchdünnen Körper, ganz ohne geht nicht).
-const FRAME_3D: Record<FrameStyle, { bezel: number; radius: number }> = {
-  android: { bezel: 0.03, radius: 0.13 },
-  minimal: { bezel: 0.016, radius: 0.11 },
-  none: { bezel: 0.008, radius: 0.07 },
-};
 
 const DEPTH = 0.035; // Körperdicke (Handy-Breite = 1 Welteinheit)
 const BEVEL = 0.012;
@@ -117,8 +111,8 @@ function remapUVs(geo: THREE.BufferGeometry, w: number, h: number) {
   uv.needsUpdate = true;
 }
 
-function ensureModel(c: Ctx3D, frame: FrameStyle, aspect: number): PhoneModel {
-  const key = `${frame}|${aspect.toFixed(4)}`;
+function ensureModel(c: Ctx3D, kind: DeviceKind, frame: FrameStyle, aspect: number): PhoneModel {
+  const key = `${kind}|${frame}|${aspect.toFixed(4)}`;
   if (c.model?.key === key) return c.model;
   if (c.model) {
     c.scene.remove(c.model.group);
@@ -127,7 +121,10 @@ function ensureModel(c: Ctx3D, frame: FrameStyle, aspect: number): PhoneModel {
     c.model.punch.geometry.dispose();
   }
 
-  const { bezel, radius } = FRAME_3D[frame];
+  const spec = chassisSpec(kind, frame);
+  // "none" braucht in 3D einen hauchdünnen Körper, ganz ohne (bezel 0) geht nicht.
+  const bezel = spec.bezel === 0 ? 0.008 : spec.bezel;
+  const radius = spec.radius;
   const innerW = 1 - 2 * bezel;
   const innerH = innerW / aspect;
   const height = innerH + 2 * bezel;
@@ -172,7 +169,7 @@ function ensureModel(c: Ctx3D, frame: FrameStyle, aspect: number): PhoneModel {
     new THREE.MeshBasicMaterial({ color: 0x050507 }),
   );
   punch.position.set(0, innerH / 2 - bezel * 1.4 - punchR, screen.position.z + 0.001);
-  punch.visible = frame === "android";
+  punch.visible = spec.punch;
 
   const group = new THREE.Group();
   group.add(body, screen, punch);
@@ -237,8 +234,9 @@ export function renderPhone3D(
   H: number,
 ): HTMLCanvasElement {
   const c = getCtx3D();
-  const aspect = img ? img.width / img.height : 9 / 19.5;
-  const model = ensureModel(c, s.frame, aspect);
+  const kind = s.format.kind ?? "phone";
+  const aspect = img ? img.width / img.height : defaultAspect(kind);
+  const model = ensureModel(c, kind, s.frame, aspect);
 
   model.body.material.color.set(s.frameColor);
   const tex = img ? textureFor(c, img) : placeholderTexture(c);

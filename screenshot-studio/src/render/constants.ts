@@ -1,15 +1,21 @@
+// Gerätetyp einer Ausgabe — steuert, wie phone.ts/phone3d.ts das Gehäuse
+// zeichnen (Smartphone vs. Tablet). Fehlt das Feld, gilt "phone".
+export type DeviceKind = "phone" | "ipad" | "android-tablet";
+
 export interface Format {
   name: string;
   w: number;
   h: number;
+  kind?: DeviceKind;
 }
 
 export const FORMATS: Format[] = [
   { name: "Google Play – Smartphone (1080×1920)", w: 1080, h: 1920 },
   { name: 'iPhone 6.7" (1290×2796)', w: 1290, h: 2796 },
   { name: 'iPhone 6.5" (1242×2688)', w: 1242, h: 2688 },
-  { name: 'iPad 12.9" (2048×2732)', w: 2048, h: 2732 },
-  { name: "Square (1080×1080)", w: 1080, h: 1080 },
+  { name: 'iPad 12.9" (2048×2732)', w: 2048, h: 2732, kind: "ipad" },
+  { name: 'Android tablet 7" (1200×1920)', w: 1200, h: 1920, kind: "android-tablet" },
+  { name: 'Android tablet 10" (1600×2560)', w: 1600, h: 2560, kind: "android-tablet" },
 ];
 
 export const BG_PRESETS = [

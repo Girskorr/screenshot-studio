@@ -1,3 +1,4 @@
+import { chassisSpec, defaultAspect } from "./chassis";
 import { FONTS } from "./constants";
 import type { RenderSettings } from "./types";
 
@@ -47,22 +48,13 @@ export function drawPhone(
   s: RenderSettings,
   img: HTMLImageElement | null,
 ) {
-  const aspect = img ? img.width / img.height : 9 / 19.5;
+  const kind = s.format.kind ?? "phone";
+  const aspect = img ? img.width / img.height : defaultAspect(kind);
   const phoneW = W * 0.62 * (s.scale / 100);
-  let bezel: number, radius: number, notch: boolean;
-  if (s.frame === "android") {
-    bezel = phoneW * 0.03;
-    radius = phoneW * 0.13;
-    notch = true;
-  } else if (s.frame === "minimal") {
-    bezel = phoneW * 0.016;
-    radius = phoneW * 0.11;
-    notch = false;
-  } else {
-    bezel = 0;
-    radius = phoneW * 0.07;
-    notch = false;
-  }
+  const spec = chassisSpec(kind, s.frame);
+  const bezel = phoneW * spec.bezel;
+  const radius = phoneW * spec.radius;
+  const notch = spec.punch;
   const innerW = phoneW - 2 * bezel;
   const innerH = innerW / aspect;
   const phoneH = innerH + 2 * bezel;
